@@ -11,24 +11,26 @@ require('../styles/main.css');
 class NearbyPhotoCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      id: this.props.photo.id
-    };
+    // this.state = {
+    //   id: this.props.photo.id
+    // };
   }
 
   addLike() {
-    console.log('state id', this.state.id);
-    this.props.increment(this.state.id);
+    console.log('stor-->')
+    //console.log('state id', this.state.id);
+    //this.props.increment(this.state.id);
   }
 
   render() {
     const { url, like_count, comment_count, id, caption } = this.props.photo;
+    const { i } = this.props;
     const commentId = `/comments/${id}`;
     return (
       <div className="img-rounded">
         <img src={ url } className='img-thumbnail'/>
         <div>
-          <span className="fa fa-heart heart" aria-hidden="true" onClick={ this.addLike.bind(this) }>{ like_count }</span>
+          <span className="fa fa-heart heart" aria-hidden="true" onClick={ this.props.increment.bind(null, i)}>{ like_count }</span>
           <span className="fa fa-comment comment" aria-hidden="true">
             <Link to={ commentId }>{ comment_count }<span className="comments">Comments</span></Link>
           </span>
